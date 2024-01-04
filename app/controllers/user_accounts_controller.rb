@@ -10,7 +10,8 @@ class UserAccountsController < ApplicationController
       email: email,
       password: password,
       display_name: display_name,
-      registered_at: Time.now
+      registered_at: Time.now,
+      jti: SecureRandom.uuid
     )
 
     if user_account.save
