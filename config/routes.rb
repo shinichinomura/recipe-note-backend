@@ -6,4 +6,12 @@ Rails.application.routes.draw do
   post "/login", to: "login#login"
   post "/logout", to: "secure/logout#logout"
   post "/signup", to: "user_accounts#create"
+
+  namespace :secure do
+    resources :recipes, only: [:index, :create] do
+      collection do
+        get :preview
+      end
+    end
+  end
 end

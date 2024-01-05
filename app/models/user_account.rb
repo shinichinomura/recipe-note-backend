@@ -9,6 +9,8 @@ class UserAccount < ApplicationRecord
     end
   end
 
+  has_many :recipes
+
   validates :display_name,
     presence: true,
     length: { maximum: 16 }
