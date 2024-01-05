@@ -4,7 +4,20 @@ require 'open-uri'
 
 class Secure::RecipesController < Secure::ApplicationController
   def index
+    recipes = Recipe.where(user_account_id: @current_user.id).order(registered_at: :desc)
 
+    render json: {
+      status: "success",
+      recipes: recipes.map do |recipe|
+        {
+          id: recipe.id,
+          title: recipe.title,
+          url: recipe.url,
+          image_url: url_for(recipe.image),
+          registered_at: recipe.registered_at
+        }
+      end
+    }
   end
 
   def preview
