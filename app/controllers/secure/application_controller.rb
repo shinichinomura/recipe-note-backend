@@ -4,7 +4,7 @@ class Secure::ApplicationController < ApplicationController
   private
 
   def verify_token
-    token = request.headers['Authorization'].split(" ")[1]
+    token = request.headers['Authorization'].present? ? request.headers['Authorization'].split(" ").last : nil
 
     unless token.present?
       render json: {

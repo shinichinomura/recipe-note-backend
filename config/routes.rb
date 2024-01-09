@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   post "/signup", to: "user_accounts#create"
 
   namespace :secure do
+    resources :user_accounts, only: [] do
+      collection do
+        get :me
+      end
+    end
+
     resources :recipes, only: [:index, :create] do
       collection do
         get :preview
